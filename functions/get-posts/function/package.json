@@ -1,0 +1,12 @@
+{
+  "name": "f5-remix-get-posts",
+  "version": "1.0.0",
+  "description": "Function to get F5 posts from MongoDB",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0"
+  },
+  "keywords": [],
+  "author": "OpenFaaS Ltd",
+  "license": "MIT"
+}
