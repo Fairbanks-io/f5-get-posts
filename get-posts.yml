@@ -1,0 +1,9 @@
+version: 1.0
+provider:
+  name: openfaas
+functions:
+  get-posts:
+    lang: node16
+    handler: ./get-posts
+    image: bsord/f5-get-posts:latest
+
