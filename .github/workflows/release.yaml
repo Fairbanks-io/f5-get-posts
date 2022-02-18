@@ -62,5 +62,5 @@ jobs:
           context: ./build/get-posts/
           file: ./build/get-posts/Dockerfile
           push: true
-          tags: 'bsord/f5-get-posts:${{ steps.get-version.outputs.version }}'
+          tags: 'bsord/f5-get-posts:latest'
 
