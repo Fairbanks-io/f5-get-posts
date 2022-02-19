@@ -3,6 +3,9 @@
   "version": "1.0.8",
   "description": "F5 function get posts from MongoDB",
   "main": "handler.js",
+  "dependencies": {
+    "mongoose": "^5.12.5"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0"
   },
