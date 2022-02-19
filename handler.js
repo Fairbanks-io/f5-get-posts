@@ -27,21 +27,19 @@ const fetchedPost = new mongoose.Schema(
 
 const post = mongoose.model('newPost', fetchedPost);
 
-// Connect to Database
-async function connectToDB () {
-  fs.readFile('/var/openfaas/secrets/mongouri', 'utf8', function(err, mongoUri){
-    mongoose
-    .connect(mongoUri, {
-      useNewUrlParser: true,
-      useCreateIndex: true,
-      useFindAndModify: false,
-      useUnifiedTopology: true,
-    })
-    .catch(
-      err => console.warn(`MongoDB connect error: ${err}`) // eslint-disable-line no-console
-    );
-  });
-};
+// Connect to database
+fs.readFile('/var/openfaas/secrets/mongouri', 'utf8', function(err, mongoUri){
+  mongoose
+  .connect(mongoUri, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true,
+  })
+  .catch(
+    err => console.warn(`MongoDB connect error: ${err}`) // eslint-disable-line no-console
+  );
+});
 
 
 // Database event handlers
@@ -84,12 +82,12 @@ module.exports = async (event, context) => {
   const searchTime = utcDate - timeAdjust();
   // Search the db and return up to 20 docs
   try {
-    await connectToDB();
+    
     const posts = await post
-    .find({ created_utc: { $gt: searchTime }, upvoteCount: { $gt: 5 } })
-    .sort({ upvoteCount: -1, created_utc: 1 })
-    .limit(20)
-    .exec()
+      .find({ created_utc: { $gt: searchTime }, upvoteCount: { $gt: 5 } })
+      .sort({ upvoteCount: -1, created_utc: 1 })
+      .limit(20)
+      .exec()
 
     return context
       .status(200)
