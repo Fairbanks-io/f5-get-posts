@@ -33,7 +33,7 @@ jobs:
       - name: Run openfaas-cli build for node16 and shrinkwrap
         uses: docker://openfaas/faas-cli:latest-root
         with:
-          args: faas-cli build --shrinkwrap --image ${{ github.event.repository}} --handler=. --name ${GITHUB_REPOSITORY#*/} --lang=node16
+          args: build --shrinkwrap --image ${{ github.event.repository}} --handler=. --name ${GITHUB_REPOSITORY#*/} --lang=node16
 
       - name: Commit changes
         uses: EndBug/add-and-commit@v7.2.1
