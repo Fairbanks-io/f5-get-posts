@@ -1,6 +1,6 @@
 {
   "name": "f5-get-posts",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "F5 function get posts from MongoDB",
   "main": "handler.js",
   "dependencies": {
