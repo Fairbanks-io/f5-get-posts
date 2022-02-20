@@ -90,6 +90,12 @@ module.exports = async (event, context) => {
       .exec()
 
     return context
+      .headers(
+        {
+          'Content-type': 'text/plain',
+          "Access-Control-Allow-Origin": "*"
+        }
+      )
       .status(200)
       .succeed(posts)
 
