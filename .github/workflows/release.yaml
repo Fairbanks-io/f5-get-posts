@@ -60,5 +60,5 @@ jobs:
           context: ./build/${GITHUB_REPOSITORY#*/}/
           file: ./build/${GITHUB_REPOSITORY#*/}/Dockerfile
           push: true
-          tags: 'bsord/f5-get-posts:${{ steps.update-version.outputs.version }}'
+          tags: 'fairbanksio/f5-get-posts:${{ steps.update-version.outputs.version }}'
 
