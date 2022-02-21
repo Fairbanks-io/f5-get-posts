@@ -22,6 +22,7 @@ const fetchedPost = new mongoose.Schema(
       default: new Date(),
       expires: 86400,
     },
+    sub: 'string',
   }, { collection: 'newposts' },
 );
 
@@ -62,7 +63,7 @@ mongoose.connection.on('error', (err) => {
 
 // main request handler
 module.exports = async (event, context) => {
-  
+  console.log(event.query); // eslint-disable-line no-console
   const result = {
     'body': JSON.stringify({extra: mongoUri}),
     'content-type': event.headers["content-type"]
@@ -82,9 +83,9 @@ module.exports = async (event, context) => {
   const searchTime = utcDate - timeAdjust();
   // Search the db and return up to 20 docs
   try {
-    
+    const searchSub = event.query? event.query.sub? event.query.sub: "politics" : "politics";
     const posts = await post
-      .find({ created_utc: { $gt: searchTime }, upvoteCount: { $gt: 5 } })
+      .find({ created_utc: { $gt: searchTime }, upvoteCount: { $gt: 5 }, sub: searchSub  })
       .sort({ upvoteCount: -1, created_utc: 1 })
       .limit(20)
       .exec()
