@@ -93,12 +93,12 @@ module.exports = async (event, context) => {
     return context
       .headers(
         {
-          'Content-type': 'text/plain',
+          'Content-type': 'application/json',
           "Access-Control-Allow-Origin": "*"
         }
       )
       .status(200)
-      .succeed(posts)
+      .succeed({posts:posts})
 
   } catch (error) {
     return context
